@@ -3,10 +3,13 @@ body{
   align-items: stretch;
   flex-direction: row;
   justify-content: stretch;
+  background-color: #333333;
+  color:white;
 }
 
 #playlistContainer{
-  flex-grow:1;
+  margin-right: 90px;
+  min-size:
 }
 ul{
   padding: 1px;
@@ -15,6 +18,7 @@ ul{
    cursor:pointer;
    list-style-type: none;
    padding:8px;
+   border-bottom: 1px solid white;
 }
 
 #playlist li[active]{
@@ -27,7 +31,7 @@ ul{
     background-color:grey;
 }
 #videoContainer{
-  flex-grow: 8;  
+  flex: 1 0 80%; 
 }
 #videoarea {
     #margin:10px;    
