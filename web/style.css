@@ -8,12 +8,20 @@ body{
 }
 
 #playlistContainer{
-  margin-right: 90px;
-  min-size:
+  margin-right: 15px;
+  max-height: 1000px;
+  resize: vertical;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
-ul{
+
+#playlist{
   padding: 1px;
+  display: block;
+  overflow-y: auto;
 }
+
 #playlist li{
    cursor:pointer;
    list-style-type: none;
@@ -30,10 +38,32 @@ ul{
     /* color:blue; */
     background-color:grey;
 }
-#videoContainer{
-  flex: 1 0 80%; 
+
+#controls{
+  display: flex;
+  justify-content:  space-evenly;
 }
-#videoarea {
-    #margin:10px;    
-    #border:1px solid silver;
+
+#controls polyline{
+  transition: all 250ms ease-in-out;
+}
+
+#controls #left:hover polyline,
+#controls #right:hover polyline{
+  stroke-width: 5;
+}
+
+#controls #left:active polyline,
+#controls #right:active polyline{
+  stroke-width: 8;
+  transition: all 100ms ease-in-out;
+}
+
+#videoContainer{
+  flex: 1 0 80%;
+}
+#videoArea {
+  margin:10px;
+  border:1px solid silver;
+  width: 95%;
 }
