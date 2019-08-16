@@ -16,18 +16,20 @@ class ListCreator:
 
 def appendLine(fileName, afterLine, targetText):
     file = open(fileName, 'r')
+    fileOut = open("index.html", 'w')
     text = file.readlines()
     for it, line in enumerate(text):
         if(line.find(afterLine) != -1):
             text[it] += "\n" + targetText + "\n"
             break
 
+    fileOut.writelines(text)
+
     file.close()
-    file = open("index.html", 'w')
-    file.writelines(text)
+    fileOut.close()
 
 if __name__ == '__main__':
-    with open("../temp_playlist.json", 'r') as file:
+    with open("temp_playlist.json", 'r') as file:
         listCreator = ListCreator()
         json.load(file, object_hook=listCreator.parseJSON)
 

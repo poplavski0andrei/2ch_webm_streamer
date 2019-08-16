@@ -41,6 +41,14 @@ create_playlist() {
     echo success
 }
 
+generateHtml() {
+  if command -v python3 &> /dev/null; then
+    python3 ./web/generateHtml.py
+  else
+    echo "python3 is not found"
+  fi
+}
+
 clean() {
     rm -rf catalog.json pared_b.json temp_playlist.json
 }
@@ -48,4 +56,4 @@ parse_b
 print_threads
 download_thread
 create_playlist
-
+generateHtml
