@@ -25,17 +25,17 @@ download_thread() {
     echo 'Choose your thread (print a number):'
     read THREAD
     curl https://2ch.hk/b/res/`jq --raw-output ".[$THREAD][\"num\"]" parsed_b.json`.json | \
-    jq '.threads | .[] | .posts | .[] | .files | .[] | {name: .fullname, path: .path, duration: .duration_secs}' > temp_playlist.json
+    jq '[.threads | .[] | .posts | .[] | .files | .[] | {name: .fullname, path: .path, duration: .duration_secs}]' > temp_playlist.json
 }
 
 create_playlist() {
     echo "#EXTM3U" > playlist.m3u || (echo "Creating playlist error" ; exit 1)
     COUNTER=1
-    for i in $(seq 0 $(expr $(jq -s 'length' temp_playlist.json) - 1))
+    for i in $(seq 0 $(expr $(jq 'length' temp_playlist.json) - 1))
     do
-      name=$(jq -s --raw-output ".[$i].name" temp_playlist.json)
-      path="https://2ch.hk$(jq -s --raw-output ".[$i].path" temp_playlist.json)\n"
-      duration=$(jq -s --raw-output ".[$i].duration" temp_playlist.json)
+      name=$(jq --raw-output ".[$i].name" temp_playlist.json)
+      path="https://2ch.hk$(jq --raw-output ".[$i].path" temp_playlist.json)\n"
+      duration=$(jq --raw-output ".[$i].duration" temp_playlist.json)
       echo -e "#EXTINF:$duration, $name\n$path" >> playlist.m3u
     done
     echo success

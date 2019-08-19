@@ -16,7 +16,7 @@ class ListCreator:
 
 def appendLine(fileName, afterLine, targetText):
     file = open(fileName, 'r')
-    fileOut = open("index.html", 'w')
+    fileOut = open("web/index.html", 'w')
     text = file.readlines()
     for it, line in enumerate(text):
         if(line.find(afterLine) != -1):
@@ -35,4 +35,4 @@ if __name__ == '__main__':
 
     # print("output list:")
     # print(listCreator.getList())
-    appendLine("template.html", "playlistContainer", listCreator.getList())
+    appendLine("web/template.html", "playlistContainer", listCreator.getList())
