@@ -12,7 +12,7 @@ $('#playlist li').each(function(){
 });
 
 //function to play next video
-function playVideo(next=0){
+function playVideo(next=1){
   var activeVideo = $("#playlist > li[src='"+$("#videoArea").attr("src")+"']")
   var video;
   if(next == 1){
@@ -42,7 +42,7 @@ function playVideo(next=0){
 // });
 
 //play next video when current is ended
-$("#videoArea").on('ended',playVideo(1));
+$("#videoArea").on('ended',function(){ playVideo(1); });
 
 
 $(function(){
