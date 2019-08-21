@@ -48,6 +48,11 @@ body{
   transition: all 250ms ease-in-out;
 }
 
+#controls #left:hover,
+#controls #right:hover{
+  cursor: pointer;
+}
+
 #controls #left:hover polyline,
 #controls #right:hover polyline{
   stroke-width: 5;
