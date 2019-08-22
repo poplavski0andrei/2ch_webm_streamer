@@ -4,6 +4,9 @@ import requests
 import re
 import sys
 import json
+import os
+
+scriptPath = os.path.dirname(os.path.realpath(__file__))
 
 
 # get all /b/ webm or mp4 threads
@@ -51,10 +54,10 @@ def dowloadThread(link):
 
 
 def generateJsonPlaylist(text):
-    with open("./temp_playlist.json", 'w') as file:
+    with open(scriptPath + "/../temp_playlist.json", 'w') as file:
         json.dump(text, file, ensure_ascii=False, indent="\t")
 
-    with open("./playlist.m3u", 'w') as file:
+    with open(scriptPath + "/../playlist.m3u", 'w') as file:
         for item in text:
             file.write("#EXTINF:" + str(item['duration']) +", " + item['name'] + "\n")
             file.write("https://2ch.hk" + item['path'] + "\n\n")
@@ -64,7 +67,6 @@ if __name__ == '__main__':
     threads = getWebmThreads()
     printThreads(threads)
     num = readThreadNum(0, len(threads) - 1)
-    print("you choose thread:", threads[num])
     threadLink = "https://2ch.hk/b/res/" + threads[num]['num'] + ".json"
     files = dowloadThread(threadLink)
     generateJsonPlaylist(files)

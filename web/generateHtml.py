@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import json
+import os
+
+scriptPath = os.path.dirname(os.path.realpath(__file__))
 
 class ListCreator:
     def __init__(self):
@@ -16,7 +19,7 @@ class ListCreator:
 
 def appendLine(fileName, afterLine, targetText):
     file = open(fileName, 'r')
-    fileOut = open("web/index.html", 'w')
+    fileOut = open(scriptPath + "/index.html", 'w')
     text = file.readlines()
     for it, line in enumerate(text):
         if(line.find(afterLine) != -1):
@@ -29,10 +32,10 @@ def appendLine(fileName, afterLine, targetText):
     fileOut.close()
 
 if __name__ == '__main__':
-    with open("temp_playlist.json", 'r') as file:
+    with open(scriptPath + "/../temp_playlist.json", 'r') as file:
         listCreator = ListCreator()
         json.load(file, object_hook=listCreator.parseJSON)
 
     # print("output list:")
     # print(listCreator.getList())
-    appendLine("web/template.html", "playlistContainer", listCreator.getList())
+    appendLine(scriptPath + "/template.html", "playlistContainer", listCreator.getList())
