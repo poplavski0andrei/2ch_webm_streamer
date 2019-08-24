@@ -18,8 +18,8 @@ class ListCreator:
 
 
 def appendLine(fileName, afterLine, targetText):
-    file = open(fileName, 'r')
-    fileOut = open(scriptPath + "/index.html", 'w')
+    file = open(fileName, 'r', encoding='utf-8')
+    fileOut = open(scriptPath + "/index.html", 'w', encoding='utf-8')
     text = file.readlines()
     for it, line in enumerate(text):
         if(line.find(afterLine) != -1):
@@ -32,7 +32,7 @@ def appendLine(fileName, afterLine, targetText):
     fileOut.close()
 
 if __name__ == '__main__':
-    with open(scriptPath + "/../temp_playlist.json", 'r') as file:
+    with open(scriptPath + "/../temp_playlist.json", 'r', encoding='utf-8') as file:
         listCreator = ListCreator()
         json.load(file, object_hook=listCreator.parseJSON)
 
