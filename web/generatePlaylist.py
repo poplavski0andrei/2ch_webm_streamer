@@ -54,10 +54,10 @@ def dowloadThread(link):
 
 
 def generateJsonPlaylist(text):
-    with open(scriptPath + "/../temp_playlist.json", 'w') as file:
+    with open(scriptPath + "/../temp_playlist.json", 'w', encoding='utf-8') as file:
         json.dump(text, file, ensure_ascii=False, indent="\t")
 
-    with open(scriptPath + "/../playlist.m3u", 'w') as file:
+    with open(scriptPath + "/../playlist.m3u", 'w', encoding='utf-8') as file:
         for item in text:
             file.write("#EXTINF:" + str(item['duration']) +", " + item['name'] + "\n")
             file.write("https://2ch.hk" + item['path'] + "\n\n")
