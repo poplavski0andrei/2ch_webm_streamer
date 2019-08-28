@@ -9,3 +9,9 @@ REQUIRES(for bash version):
 REQUIRES(for python version with web interface):
 * python3(with 'requests' module: https://2.python-requests.org/en/master/user/install/#install)
 * browser to play video
+
+
+Future features:
+* larger next/prev video  buttons
+* make active video in playlist always visible on screen
+* fix player jiggling on large videos
