@@ -1,4 +1,16 @@
 
+
+//saves info about video
+function saveVideo(index){
+    video = $('#videoArea')
+    localStorage.setItem("activeVideo", index);
+    volume = video.get(0).volume;
+    console.log("saving volume " + volume)
+    if(volume != undefined){
+        volume = localStorage.setItem("volume", volume.toFixed(4));
+    }
+}
+
 //bind click on video name to play it
 $('#playlist li').each(function(){
   $(this).click(function(){
@@ -8,6 +20,8 @@ $('#playlist li').each(function(){
 
     $('#playlist > li[active]').removeAttr('active');
     $(this).attr('active','');
+    //save active video to local storage
+    saveVideo($(this).index());
   });
 });
 
@@ -29,6 +43,8 @@ function playVideo(next=1){
 
   video.attr('active','');
   activeVideo.removeAttr('active');
+  //save active Video to local storage
+  saveVideo(video.index());
 };
 
 //resize playlist with video
@@ -53,3 +69,18 @@ $(function(){
     playVideo(1)
   });
 });
+
+//load last played video
+$(function(){
+    var videoIndex = localStorage.getItem("activeVideo");
+    var volume = localStorage.getItem("volume");
+    if(videoIndex != undefined){
+        var video = $('#playlist > li:nth-child(' + (parseInt(videoIndex) + 1) + ')')
+        if(volume != "undefined"){
+            $('#videoArea').get(0).volume = parseFloat(volume);
+        }
+        video.click();
+        $('#videoArea').get(0).pause();
+        $('#videoArea').get(0).muted = false;
+    }
+})
