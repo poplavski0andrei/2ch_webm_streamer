@@ -1,14 +1,22 @@
-
-
 //saves info about video
 function saveVideo(index){
     video = $('#videoArea')
     localStorage.setItem("activeVideo", index);
     volume = video.get(0).volume;
-    console.log("saving volume " + volume)
     if(volume != undefined){
         volume = localStorage.setItem("volume", volume.toFixed(4));
     }
+}
+
+function isLiVisible(elem)
+{
+    var listViewTop = $('#playlist').position().top;
+    var listViewBot = listViewTop + $('#playlist').height();
+
+    var elemTop = $(elem).position().top;
+    var elemBottom = elemTop + $(elem).outerHeight();
+
+    return ((elemBottom <= listViewBot) && (elemTop >= listViewTop));
 }
 
 //bind click on video name to play it
@@ -25,7 +33,17 @@ $('#playlist li').each(function(){
   });
 });
 
-//function to play next video
+
+//scroll playlist
+function scrollPlaylist(offset, down = 1){
+  if(down == 0){
+    offset = -offset
+  }
+  $('#playlist').scrollTop($('#playlist').scrollTop() + offset);
+}
+
+
+// play next/previous video
 function playVideo(next=1){
   var activeVideo = $("#playlist > li[src='"+$("#videoArea").attr("src")+"']")
   var video;
@@ -38,6 +56,12 @@ function playVideo(next=1){
   if(video.length == 0)
   	return;
 
+  //scroll playlist
+  if(!isLiVisible(video)){
+    var heightOffset = video.outerHeight();
+    scrollPlaylist(heightOffset*1.5, next);
+  }
+
   $('#videoArea').attr("src", video.attr("src"))
   $('#videoArea').attr("autoplay","autoplay")
 
@@ -47,15 +71,6 @@ function playVideo(next=1){
   saveVideo(video.index());
 };
 
-//resize playlist with video
-// $('#videoArea').resize(function(){
-//   $('#playlistContainer').height($('#videoArea').height());
-// });
-
-//resize player on page load
-// $(function(){
-//   $('#videoArea').width($('#videoContainer').width()*0.99);
-// });
 
 //play next video when current is ended
 $("#videoArea").on('ended',function(){ playVideo(1); });
@@ -69,6 +84,7 @@ $(function(){
     playVideo(1)
   });
 });
+
 
 //load last played video
 $(function(){
