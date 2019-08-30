@@ -68,10 +68,12 @@ body{
   flex: 1 0 80%;
   padding: 5px;
 }
+
+
 #videoArea {
   border:1px solid silver;
   width: 95%;
   max-height: -webkit-fill-available;
-  max-height: -moz-available; 
+  max-height: -moz-available;
   max-height: fill-available;
 }

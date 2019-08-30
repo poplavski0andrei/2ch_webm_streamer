@@ -76,9 +76,14 @@ $(function(){
     var volume = localStorage.getItem("volume");
     if(videoIndex != undefined){
         var video = $('#playlist > li:nth-child(' + (parseInt(videoIndex) + 1) + ')')
+        //scroll to choosen video
+        var offset = $('#playlist > li').first().position().top;
+        $('#playlist').scrollTop(video.position().top - offset);
+        //set previous volume
         if(volume != "undefined"){
             $('#videoArea').get(0).volume = parseFloat(volume);
         }
+        //click on video and pause it
         video.click();
         $('#videoArea').get(0).pause();
         $('#videoArea').get(0).muted = false;
