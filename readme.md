@@ -12,6 +12,4 @@ REQUIRES(for python version with web interface):
 
 
 Future features:
-* larger next/prev video  buttons
-* make active video in playlist always visible on screen
 * fix player jiggling on large videos
