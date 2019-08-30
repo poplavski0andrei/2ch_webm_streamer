@@ -44,6 +44,10 @@ body{
   justify-content:  space-evenly;
 }
 
+#controls > div{
+  flex-grow: 1;
+}
+
 #controls polyline{
   transition: all 250ms ease-in-out;
 }
