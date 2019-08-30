@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 
-import requests
 import re
 import sys
 import json
 import os
+from urllib import request
 
 scriptPath = os.path.dirname(os.path.realpath(__file__))
+
+#GET request to get JSON site
+def getRequest(url):
+    with request.urlopen(url) as answer:
+        return json.loads(answer.read())
 
 
 # get all /b/ webm or mp4 threads
 def getWebmThreads():
-    catalog = requests.get('https://2ch.hk/b/catalog.json')
-    threads = catalog.json()['threads']
+    catalog = {}
+    catalog = getRequest('https://2ch.hk/b/catalog.json')
+    threads = catalog['threads']
     webmThreads = [val for val in threads if re.search("([цшw][уэe][ибb][ьмm]|[мm][пp]4)", val['subject'], re.I) != None]
 
     return webmThreads
@@ -41,8 +47,7 @@ def readThreadNum(min, max):
 
 # download webm thread and parse it files
 def dowloadThread(link):
-    thread = requests.get(link)
-    posts = thread.json()['threads'][0]['posts']
+    posts = getRequest(link)['threads'][0]['posts']
     files = []
     for post in posts:
         for file in post['files']:

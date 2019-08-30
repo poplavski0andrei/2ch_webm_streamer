@@ -7,7 +7,7 @@ REQUIRES(for bash version):
 
 
 REQUIRES(for python version with web interface):
-* python3(with 'requests' module: https://2.python-requests.org/en/master/user/install/#install)
+* python3
 * browser to play video
 
 
