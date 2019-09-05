@@ -9,7 +9,3 @@ REQUIRES(for bash version):
 REQUIRES(for python version with web interface):
 * python3
 * browser to play video
-
-
-Future features:
-* fix player jiggling on large videos
