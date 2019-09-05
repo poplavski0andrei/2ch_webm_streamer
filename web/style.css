@@ -77,7 +77,5 @@ body{
 #videoArea {
   border:1px solid silver;
   width: 95%;
-  max-height: -webkit-fill-available;
-  max-height: -moz-available;
-  max-height: fill-available;
+  max-height: 95vh;
 }
