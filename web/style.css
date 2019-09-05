@@ -9,7 +9,7 @@ body{
 
 #playlistContainer{
   margin-right: 15px;
-  max-height: 1000px;
+  max-height: 97vh;
   resize: vertical;
   overflow-x: hidden;
   display: flex;
