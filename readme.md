@@ -5,6 +5,7 @@ REQUIRES(for bash version):
 * jq(compiled with oniguruma library)
 * curl
 
+Usage: ./pyVer.py and then open index.html in web/ folder in browser
 
 REQUIRES(for python version with web interface):
 * python3
