@@ -51,9 +51,12 @@ def dowloadThread(link):
     files = []
     for post in posts:
         for file in post['files']:
+            duration = 0
+            if 'duration_secs' in file:
+                duration = file['duration_secs']
             fileName =file['name']
             if(fileName[-3:] == 'mp4' or fileName[-4:] == 'webm'):
-                files.append({"name": file['fullname'], "path": file['path'], "duration": file['duration_secs']})
+                files.append({"name": file['fullname'], "path": file['path'], "duration": duration})
 
     return files
 
